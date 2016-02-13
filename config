@@ -1,0 +1,245 @@
+############################################
+#             needed tools                 #
+############################################
+# i3blocks
+# rofi
+# i3lock 
+# i3bar
+# feh
+# compton
+
+#############################################
+#         General configurations            #
+#############################################
+# Font
+#font pango:DejaVu Sans Mono 10
+font pango:System San Francisco Display 14
+
+# Floating modifier (mouse+$mod)
+
+#Mod Key
+set $mod Mod4
+floating_modifier $mod
+
+# Remove window decorations
+new_window 1pixel
+#############################################
+#                  Colors                   #
+#############################################
+
+
+
+#alexbooker i3 colors
+set $base00 #101218
+set $base01 #2F343F
+set $base02 #1F242F
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+
+# color defines for zenburn styled i3
+set $bg     #000000
+set $fg     #ffa500
+set $hi     #ff1a1a
+set $ac     #a0afa0
+set $tx     #040404
+set $ia     #8f8f8f
+set $be     #8faf9f
+set $yw     #ffff00
+set $gn     #00b300
+set $rd     #c52a2a
+
+#############################################
+#             System Shortcuts              #
+#############################################
+
+# start terminal
+bindsym $mod+Return             exec i3-sensible-terminal
+
+# lock i3 with i3lock
+bindsym $mod+x                  exec $HOME/.config/i3/i3lock-wrapper
+
+# kill focused window
+bindsym $mod+Shift+q            kill
+
+# start dmenu-launcher
+#bindsym $mod+d exec		j4-dmenu-desktop
+bindsym  $mod+d exec 		rofi -show run -lines 5 -eh 2 -width 100 -padding 450 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" font "System San FRancisco Display 20"
+
+# change focus
+bindsym $mod+h                  focus left
+bindsym $mod+j                  focus right
+bindsym $mod+k                  focus up
+bindsym $mod+l                  focus down
+
+# move focused window
+bindsym $mod+Shift+h            move left
+bindsym $mod+Shift+j            move right
+bindsym $mod+Shift+k            move up
+bindsym $mod+Shift+l            move down
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left         move left
+bindsym $mod+Shift+Down         move down
+bindsym $mod+Shift+Up           move up
+bindsym $mod+Shift+Right        move right
+
+# split in horizontal orientation
+bindsym $mod+g                  split h
+
+# split in vertical orientation
+bindsym $mod+v                  split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f                  fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s                  layout stacking
+bindsym $mod+w                  layout tabbed
+bindsym $mod+e                  layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space        floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space              focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a                  focus parent
+
+# Name for the workspaces
+
+set $workspace1 "1: "
+set $workspace2 "2: "
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace0 "10: "
+
+# switch to workspace
+bindsym $mod+1                  workspace $workspace1
+bindsym $mod+2                  workspace $workspace2
+bindsym $mod+3                  workspace $workspace3
+bindsym $mod+4                  workspace $workspace4
+bindsym $mod+5                  workspace $workspace5
+bindsym $mod+6                  workspace $workspace6
+bindsym $mod+7                  workspace $workspace7
+bindsym $mod+8                  workspace $workspace8
+bindsym $mod+9                  workspace $workspace9
+bindsym $mod+0                  workspace $workspace0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace0
+
+#bind tools to workspaces
+assign [class="chromium"] $workspace1
+# reload the configuration file
+bindsym $mod+Shift+c             reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r             restart
+
+# exit i3
+bindsym $mod+Shift+e             exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window
+mode "" {
+    # bindings to resize
+    bindsym j                   resize shrink width 10 px or 10 ppt
+    bindsym k                   resize grow height 10 px or 10 ppt
+    bindsym l                   resize shrink height 10 px or 10 ppt
+    bindsym semicolon           resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left                resize shrink width 10 px or 10 ppt
+    bindsym Down                resize grow height 10 px or 10 ppt
+    bindsym Up                  resize shrink height 10 px or 10 ppt
+    bindsym Right               resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return              mode "default"
+    bindsym Escape              mode "default"
+}
+
+# Enter the resize mode
+bindsym $mod+r                  mode ""
+
+
+# Window Colours
+#                         border  background text    indicator
+  client.focused          $base01 $base01    $base07 $base0F
+  client.focused_inactive $base02 $base02    $base03 $base0F
+  client.unfocused        $base02 $base02    $base03 $base0F
+  client.urgent           $base02 $base08    $base00 $base0F
+
+# Start i3bar to display a workspace bar
+# Bar
+bar {
+	font pango: System San Francisco Display, FontAwesome 13
+	status_command i3blocks
+	tray_output none
+	position top
+	colors {
+		separator 	$base03
+		background 	$base01
+    		statusline 	$base05
+		#			border	background	text
+		focused_workspace	$base01 $base01    	$base07
+		active_workspace	$base01 $base02    	$base03
+		inactive_workspace	$base01 $base01    	$base03
+		urgent_workspace	$base01 $base01    	$base08
+  }
+}
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  && pkill -RTMIN+1 i3blocks #pulseaudio-ctl up
+#increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks #pulseaudio-ctl down # 
+#decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+focus_follows_mouse no
+
+#printscreen bind
+bindsym Print exec scrot -q 95 '%Y-%m-%d-%s_$wx$h_scrot.png' -e 'mv $f ~/screenshots/'
+
+exec_always --no-startup-id feh --bg-max "$(find ~/.wallpaper/|shuf -n1)"
+
+exec compton -f
+
+
+
+
