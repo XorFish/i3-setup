@@ -39,7 +39,7 @@ color_decent="#FFFF00"
 color_good="#00FF00"
 
 	tmp=$(iw dev $INTERFACE link)
-	l=${#var}
+	l=${#tmp}
 	if [ $l -lt 20 ]; then
 	    tmp=$(iw dev $INTERFACE2 link)
 	    INTERFACE=$INTERFACE2
