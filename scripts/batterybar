@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/dash
 #  batterybar; displays battery load_state as a bar on i3blocks
 #  
 #  Copyright 2015 Keftaa <adnan.37h@gmail.com>
@@ -25,8 +25,16 @@ squares="■"
 
 #There are 8 colors that reflect the current battery load_state when 
 #discharging
-dis_colors=("#FF0027" "#FF3B05" "#FFB923" "#FFD000" "#E4FF00" "#ADFF00"
-			"#6DFF00" "#10BA00") 
+
+dis_colors_0="#FF0027"
+dis_colors_1="#FF3B27"
+dis_colors_2="#FFB923"
+dis_colors_3="#FFD000"
+dis_colors_4="#E4FF00"
+dis_colors_5="#ADFF00"
+dis_colors_6="#6DFF00"
+dis_colors_7="#10BA00"
+
 charging_color="#00AFE3"
 full_color="#FFFFFF"
 ac_color="#535353"
@@ -34,14 +42,14 @@ color="#FFFFFF"
 toggle=0
 while getopts 1:2:3:4:5:6:7:8:c:f:a:h opt; do
     case "$opt" in
-        1) dis_colors[0]="$OPTARG";;
-        2) dis_colors[1]="$OPTARG";;
-        3) dis_colors[2]="$OPTARG";;
-        4) dis_colors[3]="$OPTARG";;
-        5) dis_colors[4]="$OPTARG";;
-        6) dis_colors[5]="$OPTARG";;
-        7) dis_colors[6]="$OPTARG";;
-        8) dis_colors[7]="$OPTARG";;
+        1) dis_colors_0="$OPTARG";;
+        2) dis_colors_1="$OPTARG";;
+        3) dis_colors_2="$OPTARG";;
+        4) dis_colors_3="$OPTARG";;
+        5) dis_colors_4="$OPTARG";;
+        6) dis_colors_5="$OPTARG";;
+        7) dis_colors_6="$OPTARG";;
+        8) dis_colors_7="$OPTARG";;
         c) charging_color="$OPTARG";;
         f) full_color="$OPTARG";;
         a) ac_color="$OPTARG";;
@@ -117,29 +125,33 @@ do
        color="$ac_color"
     ;; 
     "Discharging"|"Unknown")
-        if (( load_state >= 0 && load_state < 10 )); then
+        if [ $load_state -lt 10 ]; then
             sleep_duration=.$((load_state+1))       
-            if(( toggle == 1 )); then
+            if [ $toggle = 1 ]; then
                 toggle=0 
-                color="${dis_colors[0]}"
+                color=$dis_colors_0
             else
                 toggle=1
 	        color="#FF0027"
+            fi
+            if [ $load_state -lt ]; then
+                 $HOME/.config/i3/i3lock-wrapper
+                 s2disk
             fi        
-        elif (( load_state >= 10 && load_state < 20 )); then
-            color="${dis_colors[1]}"
-        elif (( load_state >= 20 && load_state < 30 )); then
-            color="${dis_colors[2]}"
-        elif (( load_state >= 30 && load_state < 40 )); then
-            color="${dis_colors[3]}"
-        elif (( load_state >= 40 && load_state < 60 )); then
-            color="${dis_colors[4]}"
-        elif (( load_state >= 60 && load_state < 70 )); then
-            color="${dis_colors[5]}"
-        elif (( load_state >= 70 && load_state < 80 )); then
-            color="${dis_colors[6]}"
-        elif (( load_state >= 80 )); then
-            color="${dis_colors[7]}"
+        elif [ $load_state -lt 20 ]; then
+            color=$dis_colors_1
+        elif [ $load_state -lt 30 ]; then
+            color=$dis_colors_2
+        elif [ $load_state -lt 40 ]; then
+            color=$dis_colors_3
+        elif [ $load_state -lt 60 ]; then
+            color=$dis_colors_4
+        elif [ $load_state -lt 70 ]; then
+            color=$dis_colors_5
+        elif [ $load_state -lt 80 ]; then
+            color=$dis_colors_6
+        else
+            color=${dis_colors_7}
         fi
     ;;
     esac
