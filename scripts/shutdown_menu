@@ -115,10 +115,10 @@ typeset -A menu
 menu=(
   [Shutdown]="systemctl poweroff"
   [Reboot]="systemctl reboot"
-  [Hibernate]="systemctl hibernate"
-  [Suspend]="systemctl suspend"
+  [Hibernate]="s2disk && ${LOCKSCRIPT}"
+  [Suspend]="s2ram && ${LOCKSCRIPT}"
   [Halt]="systemctl halt"
-  [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
+  [Lock]="${LOCKSCRIPT}"
   [Logout]="i3-msg exit"
   [Cancel]=""
 )

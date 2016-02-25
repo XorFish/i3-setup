@@ -58,7 +58,7 @@ IF=wlp3s0
 
 		#------------------------------------------------------------------------
 
-		echo "<span foreground=\"#FFFFFF\">$IPADDR</span>"
+		echo "<span foreground=\"#CFD2DE\">$IPADDR</span>"
 	fi
 	sleep 1
 

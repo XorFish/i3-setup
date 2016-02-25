@@ -36,9 +36,9 @@ dis_colors_6="#6DFF00"
 dis_colors_7="#10BA00"
 
 charging_color="#00AFE3"
-full_color="#FFFFFF"
+full_color="#CFD2DE"
 ac_color="#535353"
-color="#FFFFFF"
+color="#CFD2DE"
 toggle=0
 while getopts 1:2:3:4:5:6:7:8:c:f:a:h opt; do
     case "$opt" in

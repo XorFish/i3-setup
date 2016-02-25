@@ -214,6 +214,9 @@ bar {
 		urgent_workspace	$base01 $base01    	$base08
   }
 }
+#shutdown-menu
+bindsym Control+Mod1+Delete exec /usr/lib/i3blocks/shutdown_menu
+
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  && pkill -RTMIN+1 i3blocks #pulseaudio-ctl up
@@ -236,7 +239,7 @@ focus_follows_mouse no
 #printscreen bind
 bindsym Print exec scrot -q 95 '%Y-%m-%d-%s_$wx$h_scrot.png' -e 'mv $f ~/screenshots/'
 
-exec_always --no-startup-id feh --bg-max "$(find ~/.wallpaper/|shuf -n1)"
+exec_always --no-startup-id feh --bg-max "$(find $HOME/.wallpaper/|shuf -n1)"
 
 exec compton -f
 

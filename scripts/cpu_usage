@@ -6,7 +6,7 @@ t_warn=50
 t_crit=80
 cpu_sum_old=0
 load_sum_old=0
-color="#FFFFFF"
+color="#CFD2DE"
 color_warn="#FFF600"
 color_crit="#EC819E"
 
@@ -41,7 +41,7 @@ do
     then
         color=$color_warn
     else
-	color="#FFFFFF"
+	color="#CFD2DE"
     fi
     if [ $percentage -lt 10 ];
     then

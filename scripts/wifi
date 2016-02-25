@@ -34,7 +34,7 @@ INTERFACE2=${interfaces##*net/}
 # connection (think desktop), the corresponding block should not be displayed.
 #------------------------------------------------------------------------
 color_bad="#EC819E"
-color_medicore="FFA000"
+color_medicore="#FFA000"
 color_decent="#FFFF00"
 color_good="#00FF00"
 
