@@ -1,10 +1,9 @@
 #!/usr/bin/bash
-
+#install https://raw.githubusercontent.com/supermarin/YosemiteSanFranciscoFont/master/install
 set -e #abort on error
 
 sudo pacman -Sy --noconfirm i3 dash feh i3lock rofi compton imagemagick scrot
-yaourt -S --noconfirm ttf-font-awesome i3blocks-git
-ruby -e "$(curl -fsSL https://raw.github.com/supermarin/YosemiteSanFranciscoFont/master/install)"
+pacaur -S --noconfirm ttf-font-awesome i3blocks-git
 
 sudo mkdir -p  /usr/lib/i3blocks
 sudo cp -r ./scripts/* /usr/lib/i3blocks/
